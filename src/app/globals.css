@@ -414,3 +414,17 @@ img { display: block; }
   .stage-bottle { width:118px; bottom:16%; }
   .stage-rock { bottom:7%; }
 }
+
+/* Mobile portrait composition: keep eyes and full jawline in frame instead of cropping at the edge. */
+@media (max-width:780px) {
+  .stage-portrait { left:-10%; width:106%; }
+  .stage-portrait img { object-position:18% 38%; }
+}
+@media (max-width:560px) {
+  .stage-portrait {
+    left:-8%; width:108%; height:66%; top:72px;
+    mask-image:linear-gradient(to right,#000 0%,#000 60%,transparent 97%);
+    -webkit-mask-image:linear-gradient(to right,#000 0%,#000 60%,transparent 97%);
+  }
+  .stage-portrait img { object-position:15% 40%; }
+}
