@@ -428,3 +428,36 @@ img { display: block; }
   }
   .stage-portrait img { object-position:15% 40%; }
 }
+
+
+/* Asset-specific ratios for the regenerated transparent bottle and cropped stone. */
+.stage-bottle {
+  width:clamp(188px,20vw,280px);
+  aspect-ratio:3/4;
+  bottom:16%;
+  filter:drop-shadow(3px 10px 12px rgba(40,0,8,.22));
+}
+.stage-bottle img { object-fit:contain; }
+.stage-rock {
+  width:53%;
+  left:21%;
+  aspect-ratio:980/310;
+  bottom:-7%;
+}
+.stage-rock img { object-fit:contain; }
+@media(max-width:1024px) {
+  .stage-bottle { width:clamp(155px,20vw,225px); bottom:16%; }
+  .stage-rock { width:61%; left:19.5%; bottom:-3%; }
+}
+@media(max-width:780px) {
+  .stage-bottle { width:clamp(150px,25vw,190px); left:45%; bottom:18%; }
+  .stage-rock { width:76%; left:12%; bottom:7%; }
+}
+@media(max-width:560px) {
+  .stage-bottle { width:clamp(119px,31.5vw,153px); left:47%; bottom:17%; }
+  .stage-rock { width:84%; left:8%; bottom:7.7%; }
+}
+@media(max-width:380px) {
+  .stage-bottle { width:118px; bottom:16%; }
+  .stage-rock { bottom:7%; }
+}
