@@ -75,40 +75,49 @@ export default function AurenHome() {
     gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
+      // Hero entrance: portrait, spring-loaded AUR/EN, bottle, stone, then Persian copy.
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.fromTo('.stage-portrait',
-        { autoAlpha: 0, xPercent: -8, scale: 1.095, filter: 'blur(11px)' },
-        { autoAlpha: 1, xPercent: 0, scale: 1, filter: 'blur(0px)', duration: 1.55 })
-        .fromTo('.stage-brand', { autoAlpha: 0, y: 94, scale: 1.035 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 1.2 }, '-=0.65')
-        .fromTo('.stage-rock', { autoAlpha: 0, y: 105, rotate: -2 },
-          { autoAlpha: 1, y: 0, rotate: 0, duration: 1.05 }, '-=0.65')
-        .fromTo('.stage-bottle', { autoAlpha: 0, y: -170, rotate: 7, scale: 0.91 },
-          { autoAlpha: 1, y: 0, rotate: 0, scale: 1, duration: 1.35, ease: 'power4.out' }, '-=0.28')
-        .fromTo('.header-inner', { autoAlpha: 0, y: -28 },
-          { autoAlpha: 1, y: 0, duration: 0.76 }, '-=0.98')
-        .fromTo('.hero-kicker', { autoAlpha: 0, y: 26 },
-          { autoAlpha: 1, y: 0, duration: 0.7 }, '-=0.75')
-        .fromTo('.hero-title .line', { autoAlpha: 0, yPercent: 115, rotateX: -19 },
-          { autoAlpha: 1, yPercent: 0, rotateX: 0, duration: 1, stagger: 0.18 }, '-=0.45')
-        .fromTo('.hero-description', { autoAlpha: 0, y: 24, filter: 'blur(6px)' },
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.75 }, '-=0.54')
-        .fromTo('.hero-cta', { autoAlpha: 0, y: 24, scale: 0.94 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.7 }, '-=0.3')
-        .fromTo('.hero-scroll', { autoAlpha: 0, y: 18 },
-          { autoAlpha: 1, y: 0, duration: 0.65 }, '-=0.32')
-        .fromTo('.hero-wave', { autoAlpha: 0, y: 75 },
-          { autoAlpha: 1, y: 0, duration: 1.35 }, '-=1.05')
-        .fromTo('.hero-bubble', { autoAlpha: 0, x: 25, scale: 0.75 },
-          { autoAlpha: 1, x: 0, scale: 1, duration: 1 }, '-=0.87');
+        { autoAlpha: 0, y: 150, scale: 1.025 },
+        { autoAlpha: 1, y: 0, scale: 1, duration: 1.35, ease: 'power4.out' })
+        .fromTo('.brand-half-left',
+          { autoAlpha: 0, x: -240, scale: 0.85, rotation: -5 },
+          { autoAlpha: 1, x: 0, scale: 1, rotation: 0, duration: 1.25, ease: 'elastic.out(1, 0.72)' }, '-=0.35')
+        .fromTo('.brand-half-right',
+          { autoAlpha: 0, x: 240, scale: 0.85, rotation: 5 },
+          { autoAlpha: 1, x: 0, scale: 1, rotation: 0, duration: 1.25, ease: 'elastic.out(1, 0.72)' }, '<')
+        .fromTo('.stage-bottle',
+          { autoAlpha: 0, y: 180, scale: 0.9, rotation: -3 },
+          { autoAlpha: 1, y: 0, scale: 1, rotation: 0, duration: 1.12, ease: 'power4.out' }, '-=0.2')
+        .fromTo('.stage-rock',
+          { autoAlpha: 0, y: 145, scale: 0.94 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 1.02, ease: 'power3.out' }, '-=0.28')
+        .fromTo('.hero-kicker',
+          { autoAlpha: 0, y: 42 },
+          { autoAlpha: 1, y: 0, duration: 0.72 })
+        .fromTo('.hero-title .line',
+          { autoAlpha: 0, yPercent: 110 },
+          { autoAlpha: 1, yPercent: 0, duration: 0.92, stagger: 0.2 }, '-=0.28')
+        .fromTo('.hero-description',
+          { autoAlpha: 0, y: 30 },
+          { autoAlpha: 1, y: 0, duration: 0.82 }, '-=0.38')
+        .fromTo('.header-inner',
+          { autoAlpha: 0, y: -18 },
+          { autoAlpha: 1, y: 0, duration: 0.65 }, '-=0.5')
+        .fromTo('.hero-wave',
+          { autoAlpha: 0, y: 52 },
+          { autoAlpha: 1, y: 0, duration: 1.15 }, '-=0.62')
+        .fromTo('.hero-bubble',
+          { autoAlpha: 0, scale: 0.68, y: 24 },
+          { autoAlpha: 1, scale: 1, y: 0, duration: 0.95 }, '-=0.75');
       gsap.to('.hero-bubble', { y: -12, duration: 4.2, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 2.5 });
-      gsap.to('.bubble-about', { y: 14, duration: 5.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+      gsap.to('.section-bubble', { y: -14, duration: 5.5, repeat: -1, yoyo: true, stagger: 0.35, ease: 'sine.inOut' });
 
       gsap.fromTo('.story-copy > .story-reveal', { autoAlpha: 0, y: 43 },
         { autoAlpha: 1, y: 0, duration: 0.95, stagger: 0.17, ease: 'power3.out',
           scrollTrigger: { trigger: '.story-copy', start: 'top 79%', once: true } });
-      gsap.fromTo('.selling-point', { autoAlpha: 0, x: -42 },
-        { autoAlpha: 1, x: 0, duration: 0.9, stagger: 0.2, ease: 'power3.out',
+      gsap.fromTo('.selling-point', { autoAlpha: 0, y: 55, scale: 0.96 },
+        { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, stagger: 0.16, ease: 'power3.out',
           scrollTrigger: { trigger: '.selling-points', start: 'top 82%', once: true } });
       gsap.fromTo('.story-stat-number', { autoAlpha: 0, y: 45, scale: 0.91 },
         { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out',
@@ -116,9 +125,6 @@ export default function AurenHome() {
       gsap.fromTo('.product-card', { autoAlpha: 0, y: 100, scale: 0.96 },
         { autoAlpha: 1, y: 0, scale: 1, duration: 0.95, stagger: 0.15, ease: 'power3.out',
           scrollTrigger: { trigger: '.products-grid', start: 'top 84%', once: true } });
-      gsap.fromTo('.products-cta', { autoAlpha: 0, x: -35 },
-        { autoAlpha: 1, x: 0, duration: 0.75,
-          scrollTrigger: { trigger: '.products-cta', start: 'top 94%', once: true } });
       gsap.fromTo('.journal-inner > *', { autoAlpha: 0, y: 60 },
         { autoAlpha: 1, y: 0, duration: 0.9, stagger: 0.14,
           scrollTrigger: { trigger: '#journal', start: 'top 80%', once: true } });
