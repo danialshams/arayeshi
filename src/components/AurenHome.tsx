@@ -104,37 +104,37 @@ export default function AurenHome() {
         .fromTo(
           '.stage-portrait',
           { autoAlpha: 0, y: 118, scale: 1.04, filter: 'blur(7px)' },
-          { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.03 },
         )
         .fromTo(
           '.brand-left-group .brand-letter:nth-child(1)',
           { autoAlpha: 0, x: -185, scaleX: 1.64, scaleY: 0.84, skewX: -8, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.66, ease: 'elastic.out(1.12, 0.58)' },
+          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.83, ease: 'elastic.out(1.06, 0.65)' },
           '-=0.26'
         )
         .fromTo(
           '.brand-right-group .brand-letter:nth-child(1)',
           { autoAlpha: 0, x: 185, scaleX: 1.64, scaleY: 0.84, skewX: 8, transformOrigin: '0% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.66, ease: 'elastic.out(1.12, 0.58)' },
-          '-=0.53'
+          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.83, ease: 'elastic.out(1.06, 0.65)' },
+          '-=0.6'
         )
         .fromTo(
           '.brand-left-group .brand-letter:nth-child(2)',
           { autoAlpha: 0, x: -170, scaleX: 1.56, scaleY: 0.86, skewX: -7, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.62, ease: 'elastic.out(1.08, 0.58)' },
-          '-=0.5'
+          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.81, ease: 'elastic.out(1.05, 0.65)' },
+          '-=0.56'
         )
         .fromTo(
           '.brand-right-group .brand-letter:nth-child(2)',
           { autoAlpha: 0, x: 170, scaleX: 1.56, scaleY: 0.86, skewX: 7, transformOrigin: '0% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.62, ease: 'elastic.out(1.08, 0.58)' },
-          '-=0.48'
+          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.81, ease: 'elastic.out(1.05, 0.65)' },
+          '-=0.56'
         )
         .fromTo(
           '.brand-left-group .brand-letter:nth-child(3)',
           { autoAlpha: 0, x: -150, scaleX: 1.48, scaleY: 0.88, skewX: -6, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.58, ease: 'elastic.out(1.02, 0.58)' },
-          '-=0.45'
+          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.8, ease: 'elastic.out(1.04, 0.65)' },
+          '-=0.54'
         )
         .fromTo(
           '.stage-bottle',
@@ -174,7 +174,7 @@ export default function AurenHome() {
         );
 
       gsap.to('.hero-bubble', { y: -10, duration: 4.1, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.3 });
-      gsap.to('.section-bubble', { y: -18, x: 6, duration: 4.8, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.28 });
+      gsap.to('.section-bubble', { y: -19, x: 5, duration: 5.8, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.4 });
 
       gsap.fromTo(
         '.story-copy > .story-reveal',
@@ -247,11 +247,6 @@ export default function AurenHome() {
         ease: 'none',
         scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 1.15 },
       });
-      gsap.to('.stage-bottle', {
-        yPercent: -4,
-        ease: 'none',
-        scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 1.3 },
-      });
     }, rootRef);
 
     return () => ctx.revert();
@@ -311,8 +306,10 @@ export default function AurenHome() {
           </div>
         </header>
 
-        <div className="stage-portrait" aria-hidden="true">
-          <Image src="/images/hero-portrait.webp" alt="" fill priority sizes="(max-width: 767px) 100vw, 60vw" quality={88} />
+        <div className="hero-portrait-clip" aria-hidden="true">
+          <div className="stage-portrait">
+            <Image src="/images/hero-model-cutout.webp" alt="" fill priority sizes="(max-width: 560px) 84vw, (max-width: 1000px) 58vw, 700px" quality={90} />
+          </div>
         </div>
 
         <div className="stage-brand" aria-hidden="true" dir="ltr">
@@ -327,12 +324,14 @@ export default function AurenHome() {
           </span>
         </div>
 
-        <div className="stage-bottle" aria-hidden="true">
-          <Image src="/images/hero-bottle.webp" alt="" fill sizes="(max-width: 767px) 32vw, 240px" quality={90} />
+        <div className="hero-bottle-clip" aria-hidden="true">
+          <div className="stage-bottle">
+            <Image src="/images/hero-bottle.webp" alt="" fill priority sizes="(max-width: 560px) 120px, (max-width: 1000px) 160px, 200px" quality={90} />
+          </div>
         </div>
 
         <div className="stage-rock" aria-hidden="true">
-          <Image src="/images/hero-stone.webp" alt="" fill sizes="(max-width: 767px) 78vw, 640px" quality={88} />
+          <Image src="/images/hero-stone.webp" alt="" fill priority sizes="(max-width: 560px) 260px, (max-width: 1000px) 400px, 490px" quality={88} />
         </div>
 
         <div className="hero-content content-width">

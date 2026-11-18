@@ -1,25 +1,25 @@
-# AUREN SKIN
+# AUREN SKIN — RTL skincare homepage
 
-Persian RTL skincare landing page built using Next.js App Router, TypeScript, GSAP ScrollTrigger, Lenis and seven optimized WebP photo assets.
+Next.js 15 / React 19 / GSAP ScrollTrigger / Lenis / self-hosted Vazirmatn.
 
-## Getting started
+## Run locally
 
-```sh
+```bash
 npm install
 npm run dev
-```
-
-Open http://localhost:3000
-
-```sh
 npm run build
-npm run start
 ```
 
-The hero animates in sequence: portrait, AUREN logotype, rock base, serum bottle, navigation, text, CTA, curve and bubble. About, stats, product cards and journal reveal as you scroll. Supports mobile and reduced-motion preferences.
+## Key changes
 
-All product data, carts and chat are demonstrative only; payment processing and chat backend are not connected. The 98% figure shown in the concept is a **placeholder**, not a verified real-world claim.
+- One continuous red hero background, transparent original-model cutout.
+- Layered AUREN wordmark, serum bottle and stone at the cream-section seam.
+- Responsive type hierarchy, real RTL story and four product cards.
+- Float animations and outlined, lightweight bubble effects.
+- High-quality lightweight WebP assets and self-hosted Vazirmatn via Fontsource.
 
-To deploy: import https://github.com/danialshams/arayeshi into Vercel as a Next.js project, root directory /, production branch main.
+## Status / scope
 
-Note: The original mockup was supplied by the user; the seven locally optimized WebP images are committed to public/images/.
+This delivery is source code and images. Static visual tests were run at 320, 360, 390, 430, 768, 1024, and 1440px widths, without horizontal overflow or hero title clipping. A full Next.js production build could not be executed in the isolated local environment because npm registry access was unavailable. Live deployment must be verified separately.
+
+Cart, search and chat are demo interactions; checkout and chat backend are not connected.
