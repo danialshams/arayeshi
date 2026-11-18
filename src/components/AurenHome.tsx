@@ -103,44 +103,26 @@ export default function AurenHome() {
       heroTl
         .fromTo(
           '.stage-portrait',
-          { autoAlpha: 0, y: 118, scale: 1.04, filter: 'blur(7px)' },
-          { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.03 },
+          { autoAlpha: 0, y: 108, scale: 1.03, filter: 'blur(7px)' },
+          { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.98 },
         )
         .fromTo(
-          '.brand-left-group .brand-letter:nth-child(1)',
-          { autoAlpha: 0, x: -185, scaleX: 1.64, scaleY: 0.84, skewX: -8, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.83, ease: 'elastic.out(1.06, 0.65)' },
-          '-=0.26'
+          '.brand-left-group .brand-letter',
+          { autoAlpha: 0, x: -108, y: 7, filter: 'blur(4px)' },
+          { autoAlpha: 1, x: 0, y: 0, filter: 'blur(0px)', duration: 0.86, stagger: 0.18, ease: 'power3.out' },
+          '-=0.2'
         )
         .fromTo(
-          '.brand-right-group .brand-letter:nth-child(1)',
-          { autoAlpha: 0, x: 185, scaleX: 1.64, scaleY: 0.84, skewX: 8, transformOrigin: '0% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.83, ease: 'elastic.out(1.06, 0.65)' },
-          '-=0.6'
-        )
-        .fromTo(
-          '.brand-left-group .brand-letter:nth-child(2)',
-          { autoAlpha: 0, x: -170, scaleX: 1.56, scaleY: 0.86, skewX: -7, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.81, ease: 'elastic.out(1.05, 0.65)' },
-          '-=0.56'
-        )
-        .fromTo(
-          '.brand-right-group .brand-letter:nth-child(2)',
-          { autoAlpha: 0, x: 170, scaleX: 1.56, scaleY: 0.86, skewX: 7, transformOrigin: '0% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.81, ease: 'elastic.out(1.05, 0.65)' },
-          '-=0.56'
-        )
-        .fromTo(
-          '.brand-left-group .brand-letter:nth-child(3)',
-          { autoAlpha: 0, x: -150, scaleX: 1.48, scaleY: 0.88, skewX: -6, transformOrigin: '100% 50%' },
-          { autoAlpha: 1, x: 0, scaleX: 1, scaleY: 1, skewX: 0, duration: 0.8, ease: 'elastic.out(1.04, 0.65)' },
-          '-=0.54'
+          '.brand-right-group .brand-letter',
+          { autoAlpha: 0, x: 108, y: 7, filter: 'blur(4px)' },
+          { autoAlpha: 1, x: 0, y: 0, filter: 'blur(0px)', duration: 0.86, stagger: 0.18, ease: 'power3.out' },
+          '<'
         )
         .fromTo(
           '.stage-bottle',
-          { autoAlpha: 0, y: 186, scale: 0.92 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.78, ease: 'power4.out' },
-          '-=0.14'
+          { autoAlpha: 0, y: 168, scale: 0.94 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.76, ease: 'power3.out' },
+          '-=0.18'
         )
         .fromTo(
           '.stage-rock',
@@ -308,7 +290,7 @@ export default function AurenHome() {
 
         <div className="hero-portrait-clip" aria-hidden="true">
           <div className="stage-portrait">
-            <Image src="/images/hero-model-cutout.webp" alt="" fill priority sizes="(max-width: 560px) 84vw, (max-width: 1000px) 58vw, 700px" quality={90} />
+            <Image src="/images/hero-model-cutout-clean.webp" alt="" fill priority sizes="(max-width: 560px) 84vw, (max-width: 1000px) 58vw, 700px" quality={92} />
           </div>
         </div>
 

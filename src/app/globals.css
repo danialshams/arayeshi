@@ -72,52 +72,54 @@ img { max-width: 100%; }
 .hero-portrait-clip { z-index: 3; }
 .hero-bottle-clip { z-index: 7; }
 .stage-portrait {
-  z-index: 3; bottom: 0; left: -2.4%;
-  width: min(51vw, 700px); height: min(91%, 830px);
+  z-index: 3; bottom: -2px; left: -0.4%;
+  width: min(48vw, 750px); height: min(93%, 890px);
   pointer-events: none;
 }
 .stage-portrait img { object-fit: contain; object-position: bottom left; }
 .stage-brand {
   z-index: 5; direction: ltr;
-  left: 5.8%; right: 5.8%; bottom: 10.4%;
+  left: 7%; right: 7%; bottom: 9.4%;
   display: flex; justify-content: center; align-items: baseline;
   color: #fbe6d6;
-  font: 700 clamp(122px, 21vw, 310px)/.83 Arial, sans-serif;
-  letter-spacing: -.052em; white-space: nowrap; pointer-events: none;
+  font: 700 clamp(118px, 19.5vw, 288px)/.83 Arial, sans-serif;
+  letter-spacing: -.05em; white-space: nowrap; pointer-events: none;
 }
+.brand-left-group { margin-left: .014em; }
+.brand-right-group { margin-right: .012em; }
 .brand-group { display: inline-flex; align-items: baseline; gap: .018em; }
 .brand-letter { display: inline-block; will-change: transform, opacity; }
 .stage-bottle {
-  z-index: 7; left: 51%; bottom: 94px;
-  width: clamp(120px, 12.6vw, 196px); aspect-ratio: 1086 / 1448;
+  z-index: 7; left: 50.8%; bottom: 72px;
+  width: clamp(106px, 10.8vw, 168px); aspect-ratio: 1086 / 1448;
   transform: translateX(-50%); pointer-events: none;
 }
 .stage-bottle img { object-fit: contain; }
 .stage-rock {
-  z-index: 10; left: 51%; bottom: -24px;
-  width: clamp(300px, 33vw, 485px); aspect-ratio: 980 / 327;
+  z-index: 10; left: 50.8%; bottom: -7px;
+  width: clamp(260px, 28vw, 410px); aspect-ratio: 980 / 327;
   transform: translateX(-50%); pointer-events: none;
 }
 .stage-rock img { object-fit: contain; }
 .hero-content {
-  z-index: 11; top: clamp(155px, 21%, 240px);
-  right: max(6%, calc((100vw - 1320px)/2));
-  width: min(41vw, 540px);
+  z-index: 11; top: clamp(132px, 16.2%, 198px);
+  right: max(5.8%, calc((100vw - 1320px)/2));
+  width: min(33vw, 456px);
 }
-.hero-copy { display: grid; gap: clamp(13px, 1.4vw, 22px); color: #fff9f4; text-align: right; direction: rtl; }
+.hero-copy { display: grid; gap: clamp(11px, 1.25vw, 18px); color: #fff9f4; text-align: right; direction: rtl; }
 .hero-kicker { font-size: clamp(13px, 1.28vw, 18px); font-weight: 700; margin: 0; line-height: 1.7; }
 .hero-title {
-  font-size: clamp(39px, 5.0vw, 79px); font-weight: 800;
-  line-height: 1.29; margin: 0; letter-spacing: -.035em;
+  font-size: clamp(37px, 4.4vw, 70px); font-weight: 800;
+  line-height: 1.26; margin: 0; letter-spacing: -.032em;
 }
 .hero-title .line { display: block; white-space: nowrap; }
 .hero-title .accent { color: var(--brand-peach); }
 .hero-description {
-  font-size: clamp(14px, 1.3vw, 19px);
-  font-weight: 400; line-height: 2; max-width: 30ch; margin: 0; color: rgba(255,248,241,.94);
+  font-size: clamp(14px, 1.12vw, 17px);
+  font-weight: 400; line-height: 1.95; max-width: 22ch; margin: 0; color: rgba(255,248,241,.94);
 }
 .hero-wave { z-index: 8; left: 0; right: 0; bottom: -2px; width: 100%; height: clamp(77px, 9vw, 116px); pointer-events: none; }
-.hero-bubble { z-index: 9; width: 76px; height: 76px; left: 4%; bottom: 65px; pointer-events: none; }
+.hero-bubble { z-index: 9; width: 74px; height: 74px; left: 4%; bottom: 54px; pointer-events: none; }
 
 /* Lightweight real bubble illusion: strong crisp rim and highlight, never blur an entire circle. */
 .bubble { border-radius: 50%;
@@ -468,12 +470,12 @@ img { max-width: 100%; }
 @media (max-width: 1100px) {
   .content-width { width: calc(100% - 60px); }
   .hero { min-height: 700px; }
-  .stage-portrait { width: min(58vw,640px); left: -6%; }
-  .stage-brand { font-size: clamp(116px,21vw,230px); bottom: 12%; }
-  .stage-bottle { left: 49%; width: clamp(114px,14vw,160px); bottom: 54px; }
-  .stage-rock { left: 49%; width: clamp(288px,40vw,395px); bottom: -22px; }
-  .hero-content { width: 45vw; right: 4%; top: 22%; }
-  .hero-title { font-size: clamp(35px,5vw,60px); }
+  .stage-portrait { width: min(53vw,600px); left: -3%; height: 84%; }
+  .stage-brand { font-size: clamp(114px,20vw,216px); bottom: 10.8%; }
+  .stage-bottle { left: 50.2%; width: clamp(104px,12vw,148px); bottom: 48px; }
+  .stage-rock { left: 50.2%; width: clamp(256px,35vw,360px); bottom: -8px; }
+  .hero-content { width: min(36vw,430px); right: 4.4%; top: 18%; }
+  .hero-title { font-size: clamp(34px,4.5vw,56px); }
   .about-layout { grid-template-columns: minmax(0,1.3fr) minmax(0,.8fr); gap: 34px; }
 }
 @media (max-width: 800px) {
@@ -481,14 +483,16 @@ img { max-width: 100%; }
   .mobile-menu-trigger { display: grid; }
   .header-separator { display: none; }
   .header-inner { min-height: 68px; width: calc(100% - 32px); }
+  .brand-mark { order: 2; }
+  .header-actions { order: 1; }
   .hero { height: min(820px,100svh); min-height: 700px; max-height: none; }
-  .stage-portrait { width: min(71vw,530px); left: -6%; height: 76%; bottom: 0; }
-  .stage-brand { font-size: clamp(99px,21vw,178px); left: 2%; right: 2%; bottom: 11%; }
-  .stage-bottle { width: clamp(108px,18vw,146px); left: 51%; bottom: 51px; }
-  .stage-rock { width: clamp(270px,45vw,360px); left: 51%; bottom: -18px; }
-  .hero-content { right: 4%; top: 20%; width: 48vw; }
-  .hero-title { font-size: clamp(34px,5vw,46px); }
-  .hero-description { font-size: 14px; }
+  .stage-portrait { width: min(67vw,500px); left: -4%; height: 74%; bottom: -1px; }
+  .stage-brand { font-size: clamp(94px,20vw,168px); left: 2%; right: 2%; bottom: 12.4%; }
+  .stage-bottle { width: clamp(100px,16vw,136px); left: 51%; bottom: 42px; }
+  .stage-rock { width: clamp(238px,42vw,332px); left: 51%; bottom: -7px; }
+  .hero-content { right: 4.2%; top: 16%; width: min(47vw,340px); }
+  .hero-title { font-size: clamp(32px,4.9vw,44px); }
+  .hero-description { font-size: 13px; max-width: 19ch; }
   .about-section { padding-top: 105px; }
   .about-layout { grid-template-columns: 1fr; gap: 28px; }
   .story-title { font-size: clamp(30px,4.8vw,40px); }
@@ -504,14 +508,14 @@ img { max-width: 100%; }
   .content-width { width: calc(100% - 30px); }
   .hero { height: max(700px, min(800px,100svh)); min-height: 700px; }
   .header-inner { width: calc(100% - 24px); min-height: 67px; }
-  .brand-mark { font-size: 21px; }
-  .header-actions { gap: 2px; }
+  .brand-mark { font-size: 21px; order: 2; }
+  .header-actions { gap: 2px; order: 1; }
   .header-icon, .cart-icon { height: 35px; width: 35px; }
-  .stage-portrait { left: -10%; bottom: 3%; width: min(84vw,395px); height: 72%; }
-  .stage-brand { font-size: 21.7vw; left: 1%; right: 1%; bottom: 16%; letter-spacing: -.06em; }
-  .stage-bottle { width: 25.5vw; max-width: 120px; left: 53%; bottom: 46px; }
-  .stage-rock { width: min(61vw,274px); left: 53%; bottom: -15px; }
-  .hero-content { width: 57%; right: 4%; top: 15.8%; }
+  .stage-portrait { left: -8%; bottom: 2.5%; width: min(81vw,382px); height: 70%; }
+  .stage-brand { font-size: 20.6vw; left: 1.5%; right: 1.5%; bottom: 16.6%; letter-spacing: -.058em; }
+  .stage-bottle { width: 23.6vw; max-width: 108px; left: 53%; bottom: 40px; }
+  .stage-rock { width: min(56vw,248px); left: 53%; bottom: -6px; }
+  .hero-content { width: min(58%, 230px); right: 4%; top: 14%; }
   .hero-copy { gap: 11px; }
   .hero-kicker { font-size: 11px; line-height: 1.65; }
   .hero-title { font-size: clamp(25px,7.1vw,36px); line-height: 1.42; letter-spacing: -.035em; }
@@ -555,8 +559,8 @@ img { max-width: 100%; }
   .mobile-nav-panel { width: 100%; height: 100%; min-height: 100%; border-radius: 0; }
 }
 @media (max-width: 380px) {
-  .stage-portrait { width: 90vw; left: -14%; height: 72%; }
-  .hero-content { top: 15%; width: 59%; }
+  .stage-portrait { width: 88vw; left: -11%; height: 70%; }
+  .hero-content { top: 14.3%; width: 60%; }
   .hero-title { font-size: 25px; }
   .hero-description { font-size: 11px; }
   .stage-brand { font-size: 21vw; }
