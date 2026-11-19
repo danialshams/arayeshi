@@ -104,27 +104,52 @@ export default function AurenHome() {
     }, ({ conditions }) => {
       if (!conditions?.motionAllowed) return;
 
+      const distance = conditions.desktop ? 1 : 0.7;
       const hero = gsap.timeline({ defaults: { ease: 'power3.out' } });
       hero
-        .from('.stage-portrait', { opacity: 0, y: 18, duration: 0.5 }, 0)
-        .from('.stage-brand', { opacity: 0, duration: 0.42 }, 0.08)
-        .from('.stage-bottle', { opacity: 0, y: 28, duration: 0.68 }, 0.12);
+        .from('.stage-portrait', { opacity: 0, y: 54 * distance, duration: 0.72 }, 0)
+        .from('.brand-left-group .brand-letter', {
+          opacity: 0, x: -52 * distance, duration: 0.58, stagger: 0.07,
+        }, 0.14)
+        .from('.brand-right-group .brand-letter', {
+          opacity: 0, x: 52 * distance, duration: 0.58, stagger: 0.07,
+        }, 0.14)
+        .from('.stage-bottle', { opacity: 0, y: 86 * distance, duration: 0.76 }, 0.28)
+        .from('.stage-rock', { opacity: 0, y: 36 * distance, duration: 0.58 }, 0.4)
+        .from('.hero-wave', { y: 26 * distance, duration: 0.66 }, 0.43)
+        .from('.hero-bubble', { opacity: 0, scale: 0.72, duration: 0.56 }, 0.52);
+
+      gsap.to('.hero-bubble', { y: -10, duration: 3.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.15 });
 
       if (conditions.desktop) {
-        gsap.to('.hero-bubble', { y: -6, duration: 2.2, repeat: 1, yoyo: true, ease: 'sine.inOut', delay: 0.8 });
-        gsap.to('.stage-portrait', {
-          yPercent: 3,
+        gsap.to('.hero-portrait-clip .stage-portrait', {
+          yPercent: 5,
           ease: 'none',
-          scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 0.6 },
+          scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 0.8 },
+        });
+      }
+
+      for (const [targets, trigger] of [
+        ['.story-copy > .story-reveal', '.about-layout'],
+        ['.selling-point', '.selling-points'],
+        ['.journal-inner > *', '#journal'],
+      ]) {
+        gsap.from(targets, {
+          opacity: 0.5,
+          y: 22 * distance,
+          duration: 0.45,
+          stagger: 0.065,
+          ease: 'power2.out',
+          scrollTrigger: { trigger, start: 'top 88%', once: true },
         });
       }
 
       if (window.location.hash === '#products') return;
       const reveal = gsap.from('.product-card', {
-        opacity: 0.65,
-        y: 14,
-        duration: 0.34,
-        stagger: 0.05,
+        opacity: 0.45,
+        y: 24 * distance,
+        duration: 0.44,
+        stagger: 0.07,
         ease: 'power2.out',
         clearProps: 'opacity,transform',
         scrollTrigger: { trigger: '.products-grid', start: 'top 92%', once: true },
