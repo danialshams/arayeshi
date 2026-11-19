@@ -2,6 +2,7 @@
 const { chromium } = require('playwright');
 const sharp = require('sharp');
 const fs = require('node:fs/promises');
+const { existsSync } = require('node:fs');
 const path = require('node:path');
 
 const prod = process.argv.includes('--production');
@@ -10,7 +11,8 @@ const folder = path.join(process.cwd(), 'screenshots');
 
 async function capture() {
   await fs.mkdir(folder, { recursive: true });
-  const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
+  const executablePath = ['/usr/bin/google-chrome', '/usr/bin/google-chrome-stable', '/usr/bin/chromium'].find(existsSync);
+  const browser = await chromium.launch({ headless: true, executablePath, args: ['--no-sandbox'] });
   try {
     // Wait for Vercel to deploy the exact changes before photographing the live domain.
     if (prod) {
