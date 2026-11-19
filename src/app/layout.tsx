@@ -1,6 +1,7 @@
 import '@fontsource-variable/vazirmatn';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import './home-extras.css';
 
 export const metadata: Metadata = {
   title: 'AUREN SKIN | فصل تازه مراقبت از پوست',

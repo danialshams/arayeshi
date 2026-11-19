@@ -1,0 +1,159 @@
+/* AUREN SKIN — additional homepage chapters and delicate atmospheric bubbles. */
+.site { position: relative; }
+.auren-bubble-atmosphere {
+  position: absolute; inset: 0; overflow: hidden; z-index: 22; pointer-events: none;
+}
+.auren-real-bubble {
+  position: absolute; display: block; aspect-ratio: 1; border-radius: 50%; overflow: visible;
+  background:
+    radial-gradient(ellipse 24% 12% at 30% 17%, rgba(255,255,255,.88), rgba(255,255,255,.09) 85%, transparent 100%),
+    radial-gradient(circle at 26% 27%, rgba(255,255,255,.27), transparent 43%),
+    radial-gradient(circle at 70% 79%, rgba(244,158,172,.16), transparent 45%),
+    radial-gradient(circle at 48% 48%, rgba(255,255,255,.007) 42%, rgba(255,255,255,.025) 61%, rgba(244,195,207,.13) 79%, rgba(255,255,255,.5) 97%);
+  border: 1px solid rgba(255,252,249,.52);
+  border-right-color: rgba(170,94,115,.18); border-bottom-color: rgba(158,81,101,.23);
+  box-shadow:
+    inset 3px 4px 7px rgba(255,255,255,.20),
+    inset -4px -5px 11px rgba(129,50,78,.08),
+    0 2px 10px rgba(78,6,26,.035);
+  transform: translate3d(0,0,0);
+  animation: auren-bubble-drift ease-in-out infinite alternate;
+  will-change: transform;
+}
+.auren-real-bubble::before {
+  content: ''; position: absolute; top: 11%; left: 14%; width: 37%; height: 17%;
+  border-top: 2px solid rgba(255,255,255,.7); border-left: 1px solid rgba(255,255,255,.58);
+  border-radius: 80% 65% 0 0; transform: rotate(-24deg);
+  filter: blur(.3px);
+}
+.auren-real-bubble::after {
+  content: ''; position: absolute; bottom: 12%; right: 15%; width: 32%; height: 13%;
+  border-bottom: 1.5px solid rgba(255,255,255,.61);
+  border-right: 1px solid rgba(255,255,255,.25); border-radius: 0 0 80% 60%;
+  transform: rotate(-28deg);
+}
+.auren-bubble-distant { filter: blur(1.2px); }
+@keyframes auren-bubble-drift {
+  0% { transform: translate3d(-5px,12px,0) rotate(-6deg); }
+  55% { transform: translate3d(6px,-14px,0) rotate(5deg); }
+  100% { transform: translate3d(-8px,-32px,0) rotate(-2deg); }
+}
+.auren-home-extras { position: relative; }
+.auren-extra-shell { width: min(1320px, calc(100% - 88px)); margin-inline: auto; }
+.auren-mini-label { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 700; line-height: 1.7; }
+.auren-ritual { background: #fff8f2; padding: 105px 0 116px; }
+.auren-section-top { display: flex; justify-content: space-between; align-items: center; gap: 18px; color: #8d1220; }
+.auren-top-side-note { margin: 0; font: 500 12px/1.6 Arial,sans-serif; letter-spacing: .15em; color: #a47575; }
+.auren-ritual-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 46px; margin: 14px 0 45px; }
+.auren-ritual-heading-row h2 { margin: 0; font-size: clamp(34px, 4vw, 59px); line-height: 1.45; letter-spacing: -.035em; font-weight: 800; }
+.auren-ritual-heading-row h2 em { font-style: normal; color: #9e1827; font-weight: 500; }
+.auren-ritual-heading-row > p { max-width: 30ch; color: #846568; font-size: 16px; line-height: 2; margin: 0 0 9px; }
+.auren-ritual-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 21px; }
+.auren-ritual-card { background: #fff; border: 1px solid rgba(132,59,58,.07); border-radius: 19px; overflow: hidden; box-shadow: 0 17px 45px rgba(72,16,18,.055); }
+.auren-ritual-photo { position: relative; aspect-ratio: 1.03; overflow: hidden; background: #9c0d1b; }
+.auren-ritual-photo img { object-fit: cover; transition: transform .75s cubic-bezier(.22,1,.36,1); }
+.auren-ritual-card:hover .auren-ritual-photo img { transform: scale(1.045); }
+.auren-step-number { position: absolute; bottom: 14px; right: 17px; border: 1px solid rgba(255,255,255,.5); color: #fffaf4; font: 400 31px/1 Georgia,serif; background: rgba(82,5,15,.26); backdrop-filter: blur(8px); padding: 9px 11px; border-radius: 8px; }
+.auren-ritual-info { padding: 27px 27px 30px; min-height: 197px; }
+.auren-ritual-info span { color: #9a4650; font-size: 12px; }
+.auren-ritual-info h3 { margin: 6px 0 8px; font-size: 25px; line-height: 1.45; }
+.auren-ritual-info p { margin: 0; font-size: 14px; line-height: 2; color: #795e5d; }
+.auren-ritual-caption { display: flex; align-items: center; justify-content: center; gap: 19px; color: #aa7777; margin-top: 41px; font-size: 13px; }
+.auren-ritual-caption span { width: 65px; height: 1px; background: #d7b5b0; }
+.auren-editorial { display: grid; grid-template-columns: 1fr 1fr; background: #f5e4dc; min-height: 650px; }
+.auren-editorial-visual { position: relative; min-height: 650px; background: #aa3139; overflow: hidden; }
+.auren-editorial-visual img { object-fit: cover; object-position: center; }
+.auren-editorial-image-label { position: absolute; left: 34px; bottom: 26px; color: rgba(255,255,255,.88); background: rgba(94,20,24,.28); padding: 12px 16px; letter-spacing: .14em; font: 500 11px/1.5 Arial,sans-serif; }
+.auren-editorial-content { align-self: center; padding: clamp(54px,6.5vw,105px); }
+.auren-editorial-content .auren-mini-label { color: #99202c; }
+.auren-editorial-content h2 { margin: 25px 0 22px; font-size: clamp(37px,4vw,61px); line-height: 1.55; font-weight: 800; letter-spacing: -.035em; }
+.auren-editorial-content h2 em { font-style: normal; color: #a13d49; font-weight: 500; }
+.auren-editorial-content > p { max-width: 55ch; color: #795c5d; line-height: 2.15; font-size: 16px; }
+.auren-editorial-rule { border-top: 1px solid rgba(122,36,46,.2); border-bottom: 1px solid rgba(122,36,46,.2); padding: 20px 0; display: flex; justify-content: space-between; gap: 12px; color: #8f3140; margin-top: 33px; font-size: 13px; }
+.auren-editorial-link { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; margin-top: 33px; color: #93121f; border-bottom: 1px solid rgba(147,18,31,.4); padding-bottom: 9px; }
+.auren-feature { position: relative; isolation: isolate; background: #790915; color: #fff3e8; overflow: hidden; padding: 110px 0; }
+.auren-feature-background { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 70% 55%, rgba(229,75,70,.23), transparent 45%), linear-gradient(125deg,#a00d1e 0%,#7a0715 54%,#590814 100%); }
+.auren-feature-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 30px; align-items: center; min-height: 600px; }
+.auren-feature-content .auren-mini-label { color: #ffd5c9; }
+.auren-feature-content h2 { font-size: clamp(39px,4.6vw,68px); font-weight: 800; line-height: 1.48; letter-spacing: -.035em; margin: 20px 0; }
+.auren-feature-content h2 em { font-style: normal; color: #ffd9c8; font-weight: 500; }
+.auren-feature-content > p { max-width: 50ch; line-height: 2.05; color: rgba(255,236,232,.78); font-size: 16px; margin-bottom: 35px; }
+.auren-feature-list { width: min(100%,570px); border-top: 1px solid rgba(255,255,255,.17); }
+.auren-feature-item { display: flex; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.17); }
+.auren-feature-icon { flex: 0 0 46px; width: 46px; height: 46px; border: 1px solid rgba(255,225,221,.32); border-radius: 50%; display: grid; place-items: center; }
+.auren-feature-item h3 { margin: 0 0 3px; font-size: 18px; }
+.auren-feature-item p { margin: 0; line-height: 1.6; color: rgba(255,243,236,.65); font-size: 13px; }
+.auren-feature-n { margin-right: auto; font: 500 12px Arial,sans-serif; color: rgba(255,243,236,.55); }
+.auren-feature-visual { position: relative; align-self: stretch; min-height: 560px; display: grid; place-items: center; }
+.auren-feature-halo { position: absolute; border-radius: 50%; aspect-ratio: 1; width: min(100%,480px); border: 1px solid rgba(255,220,213,.22); box-shadow: 0 0 0 50px rgba(255,245,240,.018),0 0 0 100px rgba(255,245,240,.012); }
+.auren-feature-stone { position: absolute; width: min(92%,480px); height: 180px; bottom: 17%; right: 4%; }
+.auren-feature-stone img { object-fit: contain; }
+.auren-feature-bottle { position: absolute; width: min(39%,225px); height: 320px; bottom: 27%; right: 31%; filter: drop-shadow(0 23px 18px rgba(20,2,10,.3)); }
+.auren-feature-bottle img { object-fit: contain; }
+.auren-feature-english { position: absolute; bottom: 4%; left: 8%; font: 400 12px Arial,sans-serif; letter-spacing: .24em; color: rgba(255,234,225,.55); }
+.auren-guide { padding: 108px 0 115px; background: #fff7f1; }
+.auren-guide-grid { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); gap: clamp(50px,8vw,130px); align-items: start; }
+.auren-guide .auren-mini-label { color: #982736; }
+.auren-guide h2 { font-size: clamp(32px,3.7vw,55px); line-height: 1.58; letter-spacing: -.03em; margin: 22px 0; }
+.auren-guide h2 em { color: #9a3c4b; font-style: normal; font-weight: 500; }
+.auren-guide-intro { max-width: 35ch; line-height: 2.1; color: #80656a; font-size: 15px; }
+.auren-faq { border-bottom: 1px solid rgba(100,30,41,.18); }
+.auren-faq:first-child { border-top: 1px solid rgba(100,30,41,.18); }
+.auren-faq summary { display: flex; align-items: center; gap: 17px; padding: 23px 0; cursor: pointer; list-style: none; font-size: 16px; font-weight: 700; line-height: 1.8; }
+.auren-faq summary::-webkit-details-marker { display: none; }
+.auren-faq-index { color: #a16a70; font: 500 13px Arial,sans-serif; }
+.auren-faq-plus { margin-right: auto; color: #9b2e3b; font: 300 30px/1 Arial,sans-serif; transition: transform .3s ease; }
+.auren-faq[open] .auren-faq-plus { transform: rotate(45deg); }
+.auren-faq p { margin: -7px 33px 26px 25px; color: #785d60; font-size: 14px; line-height: 2.1; }
+@media (max-width: 900px) {
+  .auren-extra-shell { width: calc(100% - 50px); }
+  .auren-ritual { padding: 75px 0; }
+  .auren-ritual-heading-row { align-items: start; flex-direction: column; gap: 7px; }
+  .auren-ritual-info { padding: 19px; }
+  .auren-ritual-info h3 { font-size: 21px; }
+  .auren-editorial-content { padding: 50px 35px; }
+  .auren-feature { padding: 80px 0; }
+  .auren-feature-grid { grid-template-columns: 1fr 1fr; }
+  .auren-guide-grid { gap: 40px; }
+}
+@media (max-width: 760px) {
+  .auren-bubble-atmosphere .auren-real-bubble:nth-child(3n) { display: none; }
+  .auren-real-bubble { scale: .66; }
+  .auren-extra-shell { width: calc(100% - 32px); }
+  .auren-section-top { flex-wrap: wrap; }
+  .auren-ritual-heading-row h2 { font-size: 36px; }
+  .auren-ritual-cards { grid-template-columns: 1fr; gap: 18px; }
+  .auren-ritual-photo { aspect-ratio: 1.3; }
+  .auren-ritual-info { min-height: 0; padding: 20px 22px 26px; }
+  .auren-editorial { grid-template-columns: 1fr; }
+  .auren-editorial-visual { min-height: 450px; }
+  .auren-editorial-content { padding: 58px 24px 65px; }
+  .auren-editorial-content h2 { font-size: 40px; }
+  .auren-feature-grid { grid-template-columns: 1fr; gap: 12px; }
+  .auren-feature-visual { min-height: 420px; }
+  .auren-feature-bottle { height: 245px; bottom: 26%; }
+  .auren-feature-stone { height: 150px; bottom: 14%; }
+  .auren-feature-content h2 { font-size: 43px; }
+  .auren-guide { padding: 73px 0 80px; }
+  .auren-guide-grid { grid-template-columns: 1fr; gap: 35px; }
+}
+@media (max-width: 420px) {
+  .auren-ritual-heading-row h2 { font-size: 31px; }
+  .auren-top-side-note { font-size: 10px; }
+  .auren-ritual-caption { font-size: 11px; gap: 8px; }
+  .auren-ritual-caption span { width: 25px; }
+  .auren-editorial-visual { min-height: 340px; }
+  .auren-editorial-content h2 { font-size: 32px; }
+  .auren-feature-content h2 { font-size: 36px; }
+  .auren-feature-item { gap: 10px; }
+  .auren-feature-item h3 { font-size: 15px; }
+  .auren-feature-item p { font-size: 11px; }
+  .auren-feature-visual { min-height: 340px; }
+  .auren-feature-bottle { height: 210px; }
+  .auren-feature-stone { height: 120px; }
+  .auren-guide h2 { font-size: 30px; }
+  .auren-faq summary { gap: 10px; font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .auren-real-bubble { animation: none !important; }
+}

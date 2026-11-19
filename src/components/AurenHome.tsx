@@ -19,6 +19,8 @@ import {
   X,
 } from 'lucide-react';
 import { products, type Product } from '@/data/products';
+import HomeExtras from '@/components/HomeExtras';
+import AtmosphereBubbles from '@/components/AtmosphereBubbles';
 
 const menuLinks = [
   { label: 'خانه', href: '#home' },
@@ -155,9 +157,6 @@ export default function AurenHome() {
           '-=0.46'
         );
 
-      gsap.to('.hero-bubble', { y: -10, duration: 4.1, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.3 });
-      gsap.to('.section-bubble', { y: -19, x: 5, duration: 5.8, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.4 });
-
       gsap.fromTo(
         '.story-copy > .story-reveal',
         { autoAlpha: 0, y: 42 },
@@ -257,6 +256,7 @@ export default function AurenHome() {
 
   return (
     <div className="site" ref={rootRef}>
+      <AtmosphereBubbles />
       <section className="hero" id="home" aria-label="معرفی اورن اسکین">
         <div className="hero-red-gradient" aria-hidden="true" />
 
@@ -327,8 +327,6 @@ export default function AurenHome() {
           </div>
         </div>
 
-        <div className="hero-bubble bubble" aria-hidden="true" />
-
         <svg className="hero-wave" viewBox="0 0 1000 116" preserveAspectRatio="none" aria-hidden="true">
           <path d="M0 92 C175 123 365 15 563 34 C737 51 839 116 1000 77 L1000 116 L0 116 Z" fill="#fff4ed" />
           <path d="M0 91 C175 122 365 14 563 33 C737 50 839 115 1000 76" fill="none" stroke="#fff8f4" strokeWidth="4" />
@@ -338,11 +336,6 @@ export default function AurenHome() {
       <main>
         <section className="about-section" id="about" aria-labelledby="about-heading">
           <div className="about-glow" aria-hidden="true" />
-          <span className="section-bubble bubble bubble-one" aria-hidden="true" />
-          <span className="section-bubble bubble bubble-two" aria-hidden="true" />
-          <span className="section-bubble bubble bubble-three" aria-hidden="true" />
-          <span className="section-bubble bubble bubble-four" aria-hidden="true" />
-          <span className="section-bubble bubble bubble-five" aria-hidden="true" />
           <div className="about-layout content-width">
             <div className="story-copy">
               <p className="section-label story-reveal">
@@ -410,6 +403,8 @@ export default function AurenHome() {
           </div>
           <div className="bottom-flow" aria-hidden="true" />
         </section>
+
+        <HomeExtras />
 
         <section className="journal-section" id="journal" aria-labelledby="journal-heading">
           <div className="journal-inner content-width">
