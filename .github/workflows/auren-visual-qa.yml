@@ -1,0 +1,79 @@
+name: AUREN visual QA and authentic screenshots
+
+on:
+  push:
+    branches:
+      - main
+      - feature/auren-home-atmosphere-20261119
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auren-visual-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install application dependencies
+        run: npm ci
+      - name: Install screenshot dependencies
+        run: npm install --no-save playwright@1.56.1 sharp@0.34.4
+      - name: Install headless Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Build site and check TypeScript
+        run: |
+          npm run build
+          npx tsc --noEmit
+      - name: Start local built site
+        run: |
+          (npm run start -- -p 3000 > /tmp/auren-next-server.log 2>&1 &)
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3000 > /dev/null; then exit 0; fi
+            sleep 2
+          done
+          cat /tmp/auren-next-server.log
+          exit 1
+      - name: Validate desktop and mobile layout
+        run: |
+          CAPTURE_URL=http://127.0.0.1:3000 node scripts/capture-homepage.cjs --qa
+      - name: Capture verified public production site after deploy
+        if: github.ref == 'refs/heads/main'
+        run: |
+          CAPTURE_URL=https://arayeshi-wine.vercel.app node scripts/capture-homepage.cjs --production
+      - name: Save screenshot PNGs as GitHub Action artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: auren-authentic-screenshots
+          path: screenshots/*.png
+          retention-days: 30
+      - name: Publish original PNGs to portfolio-assets branch
+        run: |
+          set -e
+          mkdir -p /tmp/auren-screens
+          cp screenshots/*.png /tmp/auren-screens/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin portfolio-assets > /dev/null; then
+            git fetch origin portfolio-assets
+            git switch -C portfolio-assets origin/portfolio-assets
+          else
+            git switch --orphan portfolio-assets
+            git rm -rf . || true
+          fi
+          mkdir -p auren
+          cp /tmp/auren-screens/*.png auren/
+          git add auren
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: refresh actual AUREN homepage screenshots"
+            git push origin HEAD:portfolio-assets
+          fi
