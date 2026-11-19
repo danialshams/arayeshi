@@ -113,7 +113,8 @@ async function capture() {
       await mobile.waitForTimeout(95);
     }
     await mobile.evaluate(()=>window.scrollTo(0,0));
-    await mobile.waitForTimeout(1200);
+    await mobile.waitForFunction(() => [...document.querySelectorAll('.hero-copy > *')].every(el => Number(getComputedStyle(el).opacity) > .98), null, { timeout: 16000 });
+    await mobile.waitForTimeout(350);
     await mobile.screenshot({ path:path.join(folder,'auren-homepage-mobile.png'), fullPage:true, animations:'disabled' });
     await mobile.close();
     await desktop.close();
