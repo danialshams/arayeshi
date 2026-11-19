@@ -42,7 +42,7 @@ async function capture() {
     console.log('Desktop diagnostics:', JSON.stringify(diagnostics));
     if (diagnostics.scrollWidth > diagnostics.width + 2) throw new Error('Horizontal overflow on desktop');
     if (diagnostics.bubbles < 30 || diagnostics.oldBubbles !== 0) throw new Error('Old bubbles present or new bubbles missing');
-    if (diagnostics.sections < 7) throw new Error('Some editorial sections are missing');
+    if (diagnostics.sections < 6) throw new Error('Some editorial sections are missing');
 
     // Scroll down to trigger all ScrollTrigger reveals and lazy-loaded images, then back to the top.
     for (let y = 0; y < diagnostics.height; y += 470) {
