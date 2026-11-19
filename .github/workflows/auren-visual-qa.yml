@@ -67,6 +67,8 @@ jobs:
           set -e
           mkdir -p /tmp/auren-screens
           cp screenshots/*.png /tmp/auren-screens/
+          git reset --hard HEAD
+          git clean -fd
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if git ls-remote --exit-code --heads origin portfolio-assets > /dev/null; then
@@ -80,6 +82,6 @@ jobs:
           cp /tmp/auren-screens/*.png auren/
           git add auren
           if ! git diff --cached --quiet; then
-            git commit -m "chore: refresh actual AUREN homepage screenshots"
+            git commit -m "[skip ci] chore: refresh actual AUREN homepage screenshots"
             git push origin HEAD:portfolio-assets
           fi

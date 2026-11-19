@@ -70,7 +70,7 @@ async function capture() {
     const siteHeight = meta.height;
     const heroHeight = Math.min(diagnostics.heroHeight, siteHeight - 1);
     const interstitial = pageWidth;
-    const margin = 230;
+    const margin = 320;
     const paddingTop = 155;
     const paddingBottom = 155;
     const heroPng = await sharp(fullInput).extract({ left: 0, top: 0, width: pageWidth, height: heroHeight }).png().toBuffer();
