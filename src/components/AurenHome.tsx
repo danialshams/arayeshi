@@ -38,6 +38,7 @@ type Cart = Record<string, number>;
 
 export default function AurenHome() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const finishProductReveal = useRef<(() => void) | null>(null);
   const [cart, setCart] = useState<Cart>({});
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -95,144 +96,59 @@ export default function AurenHome() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (!rootRef.current) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const ctx = gsap.context(() => {
-      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const motion = gsap.matchMedia(rootRef.current);
+    motion.add({
+      motionAllowed: '(prefers-reduced-motion: no-preference)',
+      desktop: '(min-width: 801px)',
+    }, ({ conditions }) => {
+      if (!conditions?.motionAllowed) return;
 
-      heroTl
-        .fromTo(
-          '.stage-portrait',
-          { autoAlpha: 0, y: 108, scale: 1.03, filter: 'blur(7px)' },
-          { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.98 },
-        )
-        .fromTo(
-          '.brand-left-group .brand-letter',
-          { autoAlpha: 0, x: -108, y: 7, filter: 'blur(4px)' },
-          { autoAlpha: 1, x: 0, y: 0, filter: 'blur(0px)', duration: 0.86, stagger: 0.18, ease: 'power3.out' },
-          '-=0.2'
-        )
-        .fromTo(
-          '.brand-right-group .brand-letter',
-          { autoAlpha: 0, x: 108, y: 7, filter: 'blur(4px)' },
-          { autoAlpha: 1, x: 0, y: 0, filter: 'blur(0px)', duration: 0.86, stagger: 0.18, ease: 'power3.out' },
-          '<'
-        )
-        .fromTo(
-          '.stage-bottle',
-          { autoAlpha: 0, y: 168, scale: 0.94 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.76, ease: 'power3.out' },
-          '-=0.18'
-        )
-        .fromTo(
-          '.stage-rock',
-          { autoAlpha: 0, y: 92, scale: 0.98 },
-          { autoAlpha: 1, y: 0, scale: 1, duration: 0.68 },
-          '-=0.34'
-        )
-        .fromTo(
-          '.hero-copy > *',
-          { autoAlpha: 0, y: 24, filter: 'blur(5px)' },
-          { autoAlpha: 1, y: 0, filter: 'blur(0px)', duration: 0.52, stagger: 0.085 },
-          '-=0.03'
-        )
-        .fromTo(
-          '.header-inner',
-          { autoAlpha: 0, y: -12 },
-          { autoAlpha: 1, y: 0, duration: 0.46 },
-          '-=0.3'
-        )
-        .fromTo(
-          '.hero-wave',
-          { autoAlpha: 0, y: 40 },
-          { autoAlpha: 1, y: 0, duration: 0.72 },
-          '-=0.34'
-        )
-        .fromTo(
-          '.hero-bubble',
-          { autoAlpha: 0, scale: 0.72, y: 14 },
-          { autoAlpha: 1, scale: 1, y: 0, duration: 0.62 },
-          '-=0.46'
-        );
+      const hero = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      hero
+        .from('.stage-portrait', { opacity: 0, y: 18, duration: 0.5 }, 0)
+        .from('.stage-brand', { opacity: 0, duration: 0.42 }, 0.08)
+        .from('.stage-bottle', { opacity: 0, y: 28, duration: 0.68 }, 0.12);
 
-      gsap.to('.hero-bubble', { y: -10, duration: 4.1, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.3 });
-      gsap.to('.section-bubble', { y: -19, x: 5, duration: 5.8, repeat: -1, yoyo: true, ease: 'sine.inOut', stagger: 0.4 });
+      if (conditions.desktop) {
+        gsap.to('.hero-bubble', { y: -6, duration: 2.2, repeat: 1, yoyo: true, ease: 'sine.inOut', delay: 0.8 });
+        gsap.to('.stage-portrait', {
+          yPercent: 3,
+          ease: 'none',
+          scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 0.6 },
+        });
+      }
 
-      gsap.fromTo(
-        '.story-copy > .story-reveal',
-        { autoAlpha: 0, y: 42 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.9,
-          stagger: 0.16,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.about-layout', start: 'top 78%', once: true },
-        }
-      );
-
-      gsap.fromTo(
-        '.selling-point',
-        { autoAlpha: 0, y: 54, scale: 0.96 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.84,
-          stagger: 0.14,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.selling-points', start: 'top 82%', once: true },
-        }
-      );
-
-      gsap.fromTo(
-        '.story-stat-number, .story-stat-caption, .stat-divider',
-        { autoAlpha: 0, y: 30 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.story-stat', start: 'top 88%', once: true },
-        }
-      );
-
-      gsap.fromTo(
-        '.product-card',
-        { autoAlpha: 0, y: 78, scale: 0.965 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.92,
-          stagger: 0.14,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: '.products-grid', start: 'top 84%', once: true },
-        }
-      );
-
-      gsap.fromTo(
-        '.journal-inner > *',
-        { autoAlpha: 0, y: 50 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.12,
-          scrollTrigger: { trigger: '#journal', start: 'top 82%', once: true },
-        }
-      );
-
-      gsap.to('.stage-portrait', {
-        yPercent: 6,
-        ease: 'none',
-        scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: 1.15 },
+      if (window.location.hash === '#products') return;
+      const reveal = gsap.from('.product-card', {
+        opacity: 0.65,
+        y: 14,
+        duration: 0.34,
+        stagger: 0.05,
+        ease: 'power2.out',
+        clearProps: 'opacity,transform',
+        scrollTrigger: { trigger: '.products-grid', start: 'top 92%', once: true },
       });
-    }, rootRef);
+      const finish = () => {
+        reveal.progress(1);
+        reveal.scrollTrigger?.kill(false);
+      };
+      const onHashChange = () => {
+        if (window.location.hash === '#products') finish();
+      };
 
-    return () => ctx.revert();
+      finishProductReveal.current = finish;
+      window.addEventListener('hashchange', onHashChange);
+      return () => {
+        finishProductReveal.current = null;
+        window.removeEventListener('hashchange', onHashChange);
+      };
+    });
+
+    return () => motion.revert();
   }, []);
+
+  const showProducts = () => finishProductReveal.current?.();
 
   const addToCart = (id: string) => {
     setCart((old: Cart) => ({ ...old, [id]: (old[id] || 0) + 1 }));
@@ -267,7 +183,7 @@ export default function AurenHome() {
             </a>
             <nav className="desktop-nav" aria-label="منوی اصلی">
               {menuLinks.map((link, index) => (
-                <a key={link.label} className={index === 0 ? 'is-current' : ''} href={link.href}>
+                <a key={link.label} className={index === 0 ? 'is-current' : ''} href={link.href} onClick={link.href === '#products' ? showProducts : undefined}>
                   {link.label}
                 </a>
               ))}
@@ -324,6 +240,9 @@ export default function AurenHome() {
               <span className="line accent">زیباتر، همیشه</span>
             </h1>
             <p className="hero-description">با محصولات مراقبت پوستی اورن، زیبایی طبیعی پوستت رو تجربه کن.</p>
+            <a className="hero-cta pill-button" href="#products" onClick={showProducts}>
+              مشاهدهٔ محصولات <ArrowLeft size={18} aria-hidden="true" />
+            </a>
           </div>
         </div>
 
@@ -383,8 +302,9 @@ export default function AurenHome() {
             </div>
           </div>
 
-          <div className="product-section content-width" id="products">
-            <div className="products-grid" aria-label="محصولات منتخب">
+          <section className="product-section content-width" id="products" aria-labelledby="products-heading">
+            <h2 className="products-heading" id="products-heading">محصولات مراقبت از پوست</h2>
+            <div className="products-grid">
               {filteredProducts.length ? (
                 filteredProducts.map((product) => (
                   <button
@@ -392,7 +312,7 @@ export default function AurenHome() {
                     className="product-card"
                     key={product.id}
                     onClick={() => setSelectedProduct(product)}
-                    aria-label={`اطلاعات بیشتر درباره ${product.title}`}
+                    aria-label={`مشاهدهٔ جزئیات ${product.title}`}
                   >
                     <span className="product-image">
                       <Image src={product.image} alt={product.imageAlt} fill sizes="(max-width: 640px) 44vw, (max-width: 950px) 45vw, 24vw" quality={86} />
@@ -400,6 +320,7 @@ export default function AurenHome() {
                     <span className="product-copy">
                       <span className="product-name">{product.title}</span>
                       <span className="product-subtitle">{product.subtitle}</span>
+                      <span className="product-details">مشاهدهٔ جزئیات <ArrowLeft size={14} aria-hidden="true" /></span>
                     </span>
                   </button>
                 ))
@@ -407,8 +328,7 @@ export default function AurenHome() {
                 <p className="no-results">محصولی با این عبارت پیدا نشد.</p>
               )}
             </div>
-          </div>
-          <div className="bottom-flow" aria-hidden="true" />
+          </section>
         </section>
 
         <section className="journal-section" id="journal" aria-labelledby="journal-heading">
@@ -480,7 +400,7 @@ export default function AurenHome() {
             </div>
             <nav aria-label="منوی موبایل">
               {menuLinks.map((link, index) => (
-                <a href={link.href} onClick={navTo} key={link.href}>
+                <a href={link.href} onClick={() => { if (link.href === '#products') showProducts(); navTo(); }} key={link.href}>
                   <span>۰{index + 1}</span>
                   {link.label}
                   <ArrowLeft size={19} />
@@ -560,7 +480,7 @@ export default function AurenHome() {
               <div className="cart-empty">
                 <ShoppingBag size={45} strokeWidth={1.3} />
                 <p>سبد خریدت هنوز خالیه.</p>
-                <button type="button" onClick={() => { setCartOpen(false); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                <button type="button" onClick={() => { setCartOpen(false); showProducts(); document.getElementById('products')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }}>
                   دیدن محصولات <ArrowLeft size={17} />
                 </button>
               </div>
@@ -570,7 +490,7 @@ export default function AurenHome() {
       )}
 
       {selectedProduct && (
-        <div className="overlay-shell" role="dialog" aria-modal="true" aria-label={selectedProduct.title} onMouseDown={(event: ReactMouseEvent<HTMLDivElement>) => { if (event.target === event.currentTarget) setSelectedProduct(null); }}>
+        <div className="overlay-shell product-overlay" role="dialog" aria-modal="true" aria-label={selectedProduct.title} onMouseDown={(event: ReactMouseEvent<HTMLDivElement>) => { if (event.target === event.currentTarget) setSelectedProduct(null); }}>
           <div className="quick-view">
             <button className="close-top" type="button" onClick={() => setSelectedProduct(null)} aria-label="بستن">
               <X size={23} />
