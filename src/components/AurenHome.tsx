@@ -149,12 +149,6 @@ export default function AurenHome() {
           { autoAlpha: 0, y: 40 },
           { autoAlpha: 1, y: 0, duration: 0.72 },
           '-=0.34'
-        )
-        .fromTo(
-          '.hero-bubble',
-          { autoAlpha: 0, scale: 0.72, y: 14 },
-          { autoAlpha: 1, scale: 1, y: 0, duration: 0.62 },
-          '-=0.46'
         );
 
       gsap.fromTo(
